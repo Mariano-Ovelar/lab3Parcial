@@ -1,0 +1,199 @@
+@charset "UTF-8";
+header, footer {
+  background-color: darkorange;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: center;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  padding: 0px 10px 0px 0px;
+}
+
+header img {
+  height: 70px;
+  width: 70px;
+}
+
+#inicio h1 {
+  text-align: center;
+}
+
+#inicio img {
+  height: 400px;
+  width: 100%;
+}
+
+fieldset {
+  border: solid 1px black !important;
+  padding: 0 10px 10px 10px;
+  border-bottom: none;
+}
+
+legend {
+  width: auto !important;
+  border: none;
+  font-size: 14px;
+}
+
+form div img {
+  width: 25px;
+  height: 40px;
+}
+
+#idOculto {
+  display: none;
+}
+
+/* form button{
+
+   } */
+/* 
+footer p{
+padding: 10px 60px;
+color: white;
+}
+nav{
+   padding: 0px 50px;
+}
+
+thead{
+   background-color : blue;
+}
+table{
+   margin: 10px auto;
+   border-collapse: collapse;
+   
+}
+td,th{
+  border: 1px solid black; 
+  text-align: center; 
+  text-transform: uppercase;
+}
+th{
+   font-weight: 900;
+   padding: 10px;
+}
+
+form div img{
+   width: 25px;
+   height: 40px;
+}
+
+
+
+
+
+fieldset{
+   border:1px transparent black;
+ }
+form{
+   margin: 0% auto;
+   width: 50%;
+}
+img{
+   height: 70px;
+   width: 70px;
+ }
+[alt=spinner]
+{
+   width: 300px;
+   height: 200px;
+   display: block;
+  margin: 0px auto;
+}
+ */
+/* .FondoCabezera{
+    background-image: url("/img/header.jpg");
+ }
+ .enCajar>div{
+    height: 400px;
+    width: 300px;
+ }
+ .alinear{
+    display: flex;
+ }
+ .centrarTexto{
+    text-align: center;
+ }
+ .separacionCentrada{
+    justify-content: space-evenly;
+ }
+ .separar{
+    justify-content: space-between;
+ }
+.centrarElementos{
+    align-items:center;
+   } 
+ .bordesCajas div{
+    border: 1px solid gray;
+ }
+ .colorDeFondo div{
+    background-color: gainsboro;
+ 
+.centrarEnElNavegador{
+   margin: 0% auto;
+   width: 50%;
+}
+ */
+/* 
+ .logo{
+   padding: 0px 50px;
+}
+.ajustarImagen{
+   height: 400px;
+   width: 100%;
+}
+
+ 
+.icono{
+   width: 25px;
+   height: 40px;
+}
+.tamañoImg{
+   height: 200px;
+   width: 300px;
+}
+
+
+.inputt{
+   display: block;
+    margin-top: 15px;
+    margin-bottom: 25px;
+   background-color: darkgray;
+    width: 100%;
+}
+.button{
+   color: white;
+   background-color: blue;
+   width: 100px;
+   height: 40px;
+   
+} */
+/* #borrar,#cancelar,#editar
+{
+    visibility: hidden;
+}
+#guardar
+{
+   visibility: visible;
+}
+select{
+   width: 70px;
+}
+#idOculto{
+   display: none
+}
+
+.alinear input,select{
+   height: 20px;
+}
+ */
+/*# sourceMappingURL=pagina.css.map */
