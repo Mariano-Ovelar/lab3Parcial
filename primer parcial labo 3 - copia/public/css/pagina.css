@@ -1,14 +1,9 @@
 @charset "UTF-8";
 header, footer {
   background-color: darkorange;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  justify-items: center;
-  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 nav a {
@@ -48,8 +43,8 @@ form div img {
   height: 40px;
 }
 
-#idOculto {
-  display: none;
+.table-responsive {
+  max-height: 300px;
 }
 
 /* form button{

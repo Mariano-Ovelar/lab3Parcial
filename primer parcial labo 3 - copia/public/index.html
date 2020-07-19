@@ -20,13 +20,22 @@
 
 
     <header class="container">
-        <a href="./"><img src="./img/logo.svg" alt="logo empresa"></a>
-        <nav>
-            <a href="">Nosotros</a>
-            <a href="">Anuncio</a>
-            <a href="">Blog</a>
-            <a href="">Contacto</a>
-        </nav>
+        <div class="row justify-content-between">
+            <div class=" col-md col-lg col-md-offset-4">
+                <div>
+
+                    <a href="./"><img src="./img/logo.svg" alt="logo empresa"></a>
+                </div>
+            </div>
+            <div class="col-sm col-md-6 col-lg-4 align-self-center">
+                <nav class="text-center">
+                    <a href="">Nosotros</a>
+                    <a href="">Anuncio</a>
+                    <a href="">Blog</a>
+                    <a href="">Contacto</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <div id="inicio" class="container">
@@ -38,6 +47,7 @@
         <form action="">
             <fieldset>
                 <legend>Informacion Del Anuncio</legend>
+                <!-- -------------------------------------------------------------------------------------- -->
 
                 <div class="row">
                     <div id="titulo" class="form-group col-12">
@@ -45,6 +55,8 @@
                             id="txtTitulo" placeholder="Titulo">
                     </div>
                 </div>
+                <!-- -------------------------------------------------------------------------------------- -->
+
                 <div class="row">
 
                     <div id="descripcion" class="form-group col-12">
@@ -53,15 +65,18 @@
                     </div>
                 </div>
 
-                <label for="">ANIMAL:</label>
+                <div>
+                    <label for="">ANIMAL:</label>
+                </div>
+
                 <div id="animal" class="row">
-                    <div class="col-2">
+                    <div class="col">
                         <div class="form-check ">
                             <input type="radio" name="animal" value="perro" id="rdbPerro" checked=true><label
                                 for="">PERRO</label>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col">
                         <div class="form-check">
                             <input type="radio" name="animal" value="gato" id="rdbGato"><label for="">GATO</label>
                         </div>
@@ -77,82 +92,117 @@
                         </div>
                     </div>
                 </div>
+                <!-- -------------------------------------------------------------------------------------- -->
                 <div class="row">
-                    <div id="descripcion" class="form-group col-1">
-                        <div>
-                            <img src="./img/huella.svg" alt="">
+
+                    <div class="col-sm-4 col-lg-4 ">
+                        <div class="row">
+                            <div class="col-1">
+                                <div>
+                                    <img src="./img/huella.svg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="form-group col">
+                                <div>
+                                    <input type="text" name="raza" id="txtRaza" placeholder="Raza" class="form-control">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="descripcion" class="form-group col-3">
-                        <div>
+                    <div class="col-sm-5 col-lg-4 ">
+                        <div class="row">
+                            <div class="col-1">
+                                <div>
+                                    <img src="./img/ciguena-volando-con-un-bebe.svg" alt="">
+                                </div>
+                            </div>
 
-                            <input type="text" name="raza" id="txtRaza" placeholder="Raza" class="form-control">
+                            <div class="col">
+                                <div id="fecha">
+
+                                    <input type="date" name="fecha_nacimiento" id="dtFecha" placeholder="dd/mm/aaaa"
+                                        class="form-control">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-1">
-                        <div>
-                            <img src="./img/ciguena-volando-con-un-bebe.svg" alt="">
+                    <div class="col-sm-3 col-lg-4 ">
+                        <div class="row">
+                            <div class="col-1">
+                                <div>
+                                    <img src="./img/jeringuilla.svg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div>
+                                    <select name="vacuna" id="sltVacuna" class="form-control">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-3">
-                        <div id="fecha">
-
-                            <input type="date" name="fecha_nacimiento" id="dtFecha" placeholder="dd/mm/aaaa"
-                                class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-1">
-                        <div>
-                            <img src="./img/jeringuilla.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div id="fecha">
-                            <select name="vacuna" id="sltVacuna" class="form-control">
-                                <option value="Si">Si</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
-                    </div>
-
                 </div>
-
+                <!-- -------------------------------------------------------------------------------------- -->
                 <div id="Pago">
                     <label for="">METODO DE PAGO</label>
                     <div>
-                        <input type="checkbox" id="ckbTarjeta" name="tarjeta" value="tarjeta">
-                        <label for="vehicle1">TARJETA</label>
-                        <input type="checkbox" id="ckbEfectivo" name="efectivo" value="efectivo">
-                        <label for="vehicle2">EFECTIVO</label>
+                        <div class="row">
+                            <div class="col ">
+                                <input type="checkbox" id="ckbTarjeta" name="tarjeta" value="tarjeta">
+                                <label for="vehicle1">TARJETA</label>
+                            </div>
+                            <div class="col">
+                                <input type="checkbox" id="ckbEfectivo" name="efectivo" value="efectivo">
+                                <label for="vehicle2">EFECTIVO</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <input type="text" name="id" id="idOculto">
             </fieldset>
             <div id="formBotones">
-                <button type="button" id="btnGuardar" class="btn btn-success"><img src="img/disquete.svg" name="iconoform">Guardar</button>
-                <button type="button" id="btnBorrar" class="btn btn-danger"><img src="img/borrar-foto.svg" name="iconoform">Eliminar</button>
-                <button type="button" id="btnEditar" class="btn btn-primary"><img src="img/editar.svg" name="iconoform">Guardar Cambios</button>
-                <button type="button" id="btnCancelar" class="btn btn-secondary"><img src="img/cerrar.svg" name="iconoform">Cancelar</button>
+                <button type="button" id="btnGuardar" class="btn btn-success"><img src="img/disquete.svg"
+                        name="iconoform">Guardar</button>
+                <button type="button" id="btnBorrar" class="btn btn-danger"><img src="img/borrar-foto.svg"
+                        name="iconoform">Eliminar</button>
+
+                <button type="button" id="btnEditar" class="btn btn-primary"><img src="img/editar.svg"
+                        name="iconoform">Guardar Cambios</button>
+
+                <button type="button" id="btnCancelar" class="btn btn-secondary"><img src="img/cerrar.svg"
+                        name="iconoform">Cancelar</button>
             </div>
         </form>
     </div>
 
-    <div id="tabla" class="container"></div>
-
+    <div class="container">
+        <div id="tabla" class="panel-body table-responsive"></div>
+    </div>
     <footer class="container">
-        <nav class="">
-            <a href="">Nosotros</a>
-            <a href="">Anuncio</a>
-            <a href="">Blog</a>
-            <a href="">Contacto</a>
-        </nav>
-        <p>Todos los Derechos Reservados 2020&copy;</p>
+        <div class="row">
+            <div class="col-6 align-self-center">
+                <nav>
+                    <a href="">Nosotros</a>
+                    <a href="">Anuncio</a>
+                    <a href="">Blog</a>
+                    <a href="">Contacto</a>
+                </nav>
+            </div>
+            <div class="col-6 align-self-center">
+                <div class="text-right">
+                    <p>Todos los Derechos Reservados 2020&copy;</p>
+                </div>
+
+            </div>
+        </div>
     </footer>
 
 </body>

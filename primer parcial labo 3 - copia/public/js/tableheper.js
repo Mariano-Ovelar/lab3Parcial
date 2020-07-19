@@ -39,7 +39,7 @@ function crearTabla(array) {
 
 function estiloTabla() {
     var tabla = document.getElementById("listaAnuncio");
-    tabla.classList.add("table", "table-bordered", "table-striped");
+    tabla.classList.add("table", "table-bordered", "table-striped", "table-hover");
 }
 
 export { crearTabla, estiloTabla };

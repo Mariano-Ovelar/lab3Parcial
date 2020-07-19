@@ -59,6 +59,7 @@ window.addEventListener("load", function () {
         cancelar()
     });
     Listar();
+    idOculto.classList.add("d-none");
 });
 
 function crearElemento(form) {
@@ -114,7 +115,7 @@ function crearElemento(form) {
     }
 
     transaccion = "venta";
-    id=idOculto.value;
+    id = idOculto.value;
     var anuncio = new Anuncio_Mascota(id, titulo, transaccion, descripcion, precio, animal, raza, fecha_nacimiento, vacuna, metodo_de_pago);
 
     return anuncio;
@@ -150,7 +151,7 @@ function Listar() {
 function CargarFormulario(obj) {
     botonesVisivilidad([btnGuardar], grupoDeBotonesForm);
     ckbTarjeta.checked = false;
-        ckbEfectivo.checked = false;
+    ckbEfectivo.checked = false;
     txtTitulo.value = obj.titulo;
     txtDescripcion.value = obj.descripcion;
     if (obj.animal == "perro") {
@@ -188,13 +189,12 @@ function Spinner() {
 
 function botonesVisivilidad(aOcultar, aMostrar) {
     for (var index = 0; index < aOcultar.length; index++) {
-        aOcultar[index].setAttribute('style', 'visibility: hidden');
+        aOcultar[index].classList.add("d-none");;
     }
     for (var index = 0; index < aMostrar.length; index++) {
-        const element = aMostrar[index].setAttribute('style', 'visibility: visible');
+        const element = aMostrar[index].classList.remove("d-none");;
 
     }
-
 }
 
 function borrarForm() {
@@ -255,3 +255,12 @@ function alerta(mensaje) {
     alert(respuesta);
     return opcion;
 }
+
+
+/* $(document).ready(function () {
+    $('#table').DataTable({
+        "scrollX": true
+    });
+    $('.dataTables_length').addClass('bs-select');
+});
+ */
