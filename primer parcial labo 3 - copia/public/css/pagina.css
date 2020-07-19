@@ -47,6 +47,19 @@ form div img {
   max-height: 300px;
 }
 
+thead {
+  background-color: blue;
+}
+
+[alt=spinner] {
+  display: block;
+  margin: 0px auto;
+}
+
+footer p {
+  padding: 25px 25px 10px 25px;
+}
+
 /* form button{
 
    } */

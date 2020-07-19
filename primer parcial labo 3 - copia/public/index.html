@@ -21,12 +21,13 @@
 
     <header class="container">
         <div class="row justify-content-between">
-            <div class=" col-md col-lg col-md-offset-4">
-                <div>
-
+            <div class="col-md-2 col-lg-1 align-self-center">
+                <div class="text-center">
                     <a href="./"><img src="./img/logo.svg" alt="logo empresa"></a>
                 </div>
+
             </div>
+
             <div class="col-sm col-md-6 col-lg-4 align-self-center">
                 <nav class="text-center">
                     <a href="">Nosotros</a>
@@ -44,7 +45,7 @@
     </div>
 
     <div id="form" class="container">
-        <form action="">
+        <form action="" id="formAnuncio">
             <fieldset>
                 <legend>Informacion Del Anuncio</legend>
                 <!-- -------------------------------------------------------------------------------------- -->
@@ -52,7 +53,7 @@
                 <div class="row">
                     <div id="titulo" class="form-group col-12">
                         <label for="">TITULO:</label><input class="form-control" type="text" name="titulo"
-                            id="txtTitulo" placeholder="Titulo">
+                            id="txtTitulo" placeholder="Titulo" required >
                     </div>
                 </div>
                 <!-- -------------------------------------------------------------------------------------- -->
@@ -61,7 +62,7 @@
 
                     <div id="descripcion" class="form-group col-12">
                         <label for="">DESCRIPCION:</label><input class="form-control" type="text" name="descripcion"
-                            id="txtDescripcion" placeholder="Descripcion">
+                            id="txtDescripcion" placeholder="Descripcion" required>
                     </div>
                 </div>
 
@@ -85,10 +86,10 @@
                 </div>
                 <div class="row">
 
-                    <div id="descripcion" class="form-group col-12">
+                    <div class="form-group col-12">
                         <div id="precio">
-                            <label for="">PRECIO:</label><input class="form-control" type="text" name="precio"
-                                id="txtPrecio" placeholder="Precio">
+                            <label for="">PRECIO:</label><input class="form-control" type="number" name="precio"
+                                min="0" value="0" id="txtPrecio" placeholder="Precio" required>
                         </div>
                     </div>
                 </div>
@@ -105,7 +106,7 @@
 
                             <div class="form-group col">
                                 <div>
-                                    <input type="text" name="raza" id="txtRaza" placeholder="Raza" class="form-control">
+                                    <input type="text" name="raza" id="txtRaza" placeholder="Raza" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +156,7 @@
                     <div>
                         <div class="row">
                             <div class="col ">
-                                <input type="checkbox" id="ckbTarjeta" name="tarjeta" value="tarjeta">
+                                <input type="checkbox" id="ckbTarjeta" name="tarjeta" value="tarjeta" >
                                 <label for="vehicle1">TARJETA</label>
                             </div>
                             <div class="col">
@@ -169,12 +170,12 @@
                 <input type="text" name="id" id="idOculto">
             </fieldset>
             <div id="formBotones">
-                <button type="button" id="btnGuardar" class="btn btn-success"><img src="img/disquete.svg"
+                <button type="submit" id="btnGuardar" class="btn btn-success"><img src="img/disquete.svg"
                         name="iconoform">Guardar</button>
                 <button type="button" id="btnBorrar" class="btn btn-danger"><img src="img/borrar-foto.svg"
                         name="iconoform">Eliminar</button>
-
-                <button type="button" id="btnEditar" class="btn btn-primary"><img src="img/editar.svg"
+                        
+                <button type="submit" id="btnEditar" class="btn btn-primary"><img src="img/editar.svg"
                         name="iconoform">Guardar Cambios</button>
 
                 <button type="button" id="btnCancelar" class="btn btn-secondary"><img src="img/cerrar.svg"
@@ -186,18 +187,19 @@
     <div class="container">
         <div id="tabla" class="panel-body table-responsive"></div>
     </div>
+
     <footer class="container">
-        <div class="row">
-            <div class="col-6 align-self-center">
-                <nav>
+        <div class="row justify-content-between">
+            <div class="col-md-6 col-lg-4 align-self-center">
+                <nav class="text-center">
                     <a href="">Nosotros</a>
                     <a href="">Anuncio</a>
                     <a href="">Blog</a>
                     <a href="">Contacto</a>
                 </nav>
             </div>
-            <div class="col-6 align-self-center">
-                <div class="text-right">
+            <div class="col-md-6 col-lg-5 align-self-center">
+                <div class="text-center">
                     <p>Todos los Derechos Reservados 2020&copy;</p>
                 </div>
 

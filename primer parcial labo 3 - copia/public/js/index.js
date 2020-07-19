@@ -21,6 +21,8 @@ let dtFecha;
 let sltVacuna;
 let idOculto;
 let grupoDeBotonesForm;
+let today;
+let inputRequired;
 
 window.addEventListener("load", function () {
     form = document.forms[0];
@@ -43,10 +45,16 @@ window.addEventListener("load", function () {
     dtFecha = document.getElementById("dtFecha");
     sltVacuna = document.getElementById("sltVacuna");
     idOculto = document.getElementById("idOculto");
+
+    inputRequired = [txtTitulo, txtDescripcion, txtPrecio, txtRaza];
+
+    today = new Date().toISOString().split('T')[0];
+    dtFecha.setAttribute('max', today);
+    dtFecha.value = today;
     botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
-    btnGuardar.addEventListener("click", function () {
-        alta(crearElemento(form));
-    });
+    /* btnGuardar.addEventListener("click", function () {
+        
+    }); */
 
     btnBorrar.addEventListener("click", function () {
         baja(crearElemento(form))
@@ -60,7 +68,16 @@ window.addEventListener("load", function () {
     });
     Listar();
     idOculto.classList.add("d-none");
+
 });
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        alta(crearElemento(form));
+    });
+});
+
+
 
 function crearElemento(form) {
     var id;
@@ -201,9 +218,9 @@ function borrarForm() {
     txtTitulo.value = "";
     txtDescripcion.value = "";
     rdbPerro.checked = true;
-    txtPrecio.value = "";
+    txtPrecio.value = "0";
     txtRaza.value = "";
-    dtFecha.value = "";
+    dtFecha.value = today;
     sltVacuna.value = "Si";
     idOculto.value = "";
     ckbTarjeta.checked = false;
@@ -212,11 +229,12 @@ function borrarForm() {
 
 
 function alta(obj) {
-    if (alerta("Quiere agregar el nuevo anuncio a la lista?")) {
-        btnGuardar.disabled = true;
-        Manejador_Server(obj, "Alta Exitosa", '/alta');
-        Listar();
-        btnGuardar.disabled = false;
+    if (requiredCompletado()) {
+        if (alerta("Quiere agregar el nuevo anuncio a la lista?")) {
+            Manejador_Server(obj, "Alta Exitosa", '/alta');
+            Listar();
+            borrarForm();
+        }
     }
 }
 
@@ -225,16 +243,21 @@ function baja(obj) {
         botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
         Manejador_Server(obj, "Baja Exitosa", '/baja');
         Listar();
+        borrarForm();
     }
 
 }
 
 function modificar(obj) {
-    if (alerta("Quiere guardar cambios de el anuncio?")) {
-        botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
-        Manejador_Server(obj, "Modificacion Exitosa", '/modificar');
-        Listar();
+    if (requiredCompletado()) {
+        if (alerta("Quiere guardar cambios de el anuncio?")) {
+            botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
+            Manejador_Server(obj, "Modificacion Exitosa", '/modificar');
+            Listar();
+            borrarForm();
+        }
     }
+
 }
 
 function cancelar() {
@@ -252,15 +275,17 @@ function alerta(mensaje) {
     } else {
         respuesta = "Has clickado Cancelar";
     }
-    alert(respuesta);
+    //alert(respuesta);
     return opcion;
 }
 
-
-/* $(document).ready(function () {
-    $('#table').DataTable({
-        "scrollX": true
+function requiredCompletado() {
+    var respuesta = true;
+    inputRequired.forEach(element => {
+        if (element.value == "" || element.value == null) {
+            respuesta = false;
+        }
     });
-    $('.dataTables_length').addClass('bs-select');
-});
- */
+
+    return respuesta;
+}
