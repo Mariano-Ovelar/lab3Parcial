@@ -26,5 +26,14 @@ function Manejador_Server(obj, mensaje, pedido) {
     //enviar la peticion
     xhr.send(JSON.stringify(obj));
 }
+function Manejador_ServerJQ(obj, mensaje, pedido) {
 
-export { Manejador_Server };
+    $.ajax({
+        type: 'POST',
+        url: pedido,
+        data: obj,
+        dataType: "json"
+
+    });
+}
+export { Manejador_Server, Manejador_ServerJQ };

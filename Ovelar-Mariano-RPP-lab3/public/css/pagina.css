@@ -1,0 +1,77 @@
+header, footer {
+  background-color: darkorange;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  padding: 0px 10px 0px 0px;
+}
+
+header img {
+  height: 70px;
+  width: 70px;
+}
+
+#inicio h1 {
+  text-align: center;
+}
+
+#inicio img {
+  height: 400px;
+  width: 100%;
+  -webkit-transition-property: height;
+  transition-property: height;
+  -webkit-transition-duration: 5s;
+          transition-duration: 5s;
+}
+
+#inicio:hover > img {
+  height: 250px;
+  -webkit-transition-property: height;
+  transition-property: height;
+  -webkit-transition-duration: 5s;
+          transition-duration: 5s;
+}
+
+fieldset {
+  border: solid 1px black !important;
+  padding: 0 10px 10px 10px;
+  border-bottom: none;
+}
+
+legend {
+  width: auto !important;
+  border: none;
+  font-size: 14px;
+}
+
+form div img {
+  width: 25px;
+  height: 40px;
+}
+
+.table-responsive {
+  max-height: 300px;
+}
+
+thead {
+  background-color: blue;
+}
+
+[alt=spinner] {
+  display: block;
+  margin: 0px auto;
+}
+
+footer p {
+  padding: 25px 25px 10px 25px;
+}
+
+table tbody {
+  overflow-y: auto;
+}
+/*# sourceMappingURL=pagina.css.map */

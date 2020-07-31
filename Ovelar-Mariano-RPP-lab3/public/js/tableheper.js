@@ -42,4 +42,27 @@ function estiloTabla() {
     tabla.classList.add("table", "table-bordered", "table-striped", "table-hover");
 }
 
-export { crearTabla, estiloTabla };
+function filtrarAnimal(array, animal) {
+    /* var arrayFiltado = new array(); */
+    //arrayFiltado = array.filter(array => array.animal == animal);
+    //crearTabla(arrayFiltado);
+    /* 
+        for (let atriubuto in array[0]) {
+            if (atriubuto.animal == animal) {
+    
+            }
+        }
+        crearTabla(arrayFiltado);
+     */
+
+    let arrayFiltado = array.filter(anuncio => {
+
+        return anuncio.animal == animal
+
+    })
+
+    return arrayFiltado;
+
+
+}
+export { crearTabla, estiloTabla, filtrarAnimal };
