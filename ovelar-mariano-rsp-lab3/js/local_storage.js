@@ -25,20 +25,22 @@ function lSTraer(key) {
 function lSGuardarNuevoElemento(datoAGuardar, key) {
     var lista;
     var siguiente;
+    var ultimoId = lSTraer("ultimoId");
     if (datoAGuardar != null && key != '') {
         lista = lSTraer(key);
-        if (lista == null || lista == "") {
+        if (lista == null || lista == "" && ultimoId == 0) {
             lista = Array();
             siguiente = 1;
             datoAGuardar.id = siguiente;
-
+            lSGuardar(siguiente, "ultimoId");
             lista.push(datoAGuardar);
             lSGuardar(lista, key);
         } else {
-            siguiente = lista.length + 1;
+            siguiente = ultimoId + 1;
             datoAGuardar.id = siguiente;
             lista.push(datoAGuardar);
             lSGuardar(lista, key);
+            lSGuardar(siguiente, "ultimoId");
         }
     }
 

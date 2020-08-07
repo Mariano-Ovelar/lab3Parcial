@@ -52,6 +52,7 @@ function refrecarTabla(datos) {
     sacarMaximo(datos);
     sacarMinimo(datos);
     sacarPorsentajeVacunacion(datos);
+    generarGrafico();
 }
 
 /* function Listar() {
@@ -74,11 +75,14 @@ function agregarEventosTabla() {
         td[i].addEventListener('click', function (e) {
             let tr = e.target.parentElement;
             let nodes = tr.childNodes;
+
             console.log(nodes);
             let anuncio = new Anuncio_Mascota(nodes[0].textContent, nodes[1].textContent, nodes[2].textContent
                 , nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent
                 , nodes[7].textContent, nodes[8].textContent);
             CargarFormulario(anuncio);
+            contadorDeClick(anuncio);
+            
         });
     }
 }

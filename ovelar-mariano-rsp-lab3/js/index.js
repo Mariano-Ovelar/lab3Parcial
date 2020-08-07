@@ -403,27 +403,40 @@ function sacarPorsentajeVacunacion(listaAnuncio) {
     if (listaAnuncio.length) {
         porsentaVacunados = (vacunados * 100) / listaAnuncio.length;
     }
-    generarGrafico(porsentaVacunados);
+    //generarGrafico(porsentaVacunados);
     txtPorsentajeVacunado.value = porsentaVacunados + "%";
 
 }
 
-function generarGrafico(dato) {
+function generarGrafico() {
+    var listaCkic = lSTraer("listaClick");
+    var arrayDatos =Array();
+    var arrayColores =Array();
+    for (var elementos of listaCkic) {
+        arrayDatos.push(elementos.click);
+        arrayColores.push("rgb(" + (elementos.id + 4) + "," + (elementos.id + 9) + "," + (elementos.id + 5) + ",0.5)");
+    }
+    /* var arrayDatos = listaCkic.map(function (elementos) {
+        elementos.click;
+    });
+    var arrayColores = listaCkic.map(function (elementos) {
+        return "rgb(" + (elementos.id + 4) + "," + (elementos.id + 9) + "," + (elementos.id + 5) + ",0.5)";
+    }); */
+    console.log(arrayColores);
+    console.log(arrayDatos);
+
     var ctx = document.getElementById("myChart").getContext("2d");
-    var myChart = new Chart(ctx, {
-        type: "pie",
+    new Chart(ctx, {
+        type: "bar",
         data: {
-            labels: ['Vacunados', 'no Vacunados'],
+            //labels: ['Vacunados', 'no Vacunados'],
             datasets: [{
                 //label:'Num datos',
-                data: [dato, 100 - dato],
-                backgroundColor: [
-                    'rgb(255, 0, 0,0.5)',
-                    'rgb(0, 0, 255,0.5)',
-                ]
+                data: arrayDatos,
+                backgroundColor: arrayColores
             }]
         },
-        /* options: {
+        options: {
             scales: {
                 yAxes: [{
                     ticks: {
@@ -431,6 +444,40 @@ function generarGrafico(dato) {
                     }
                 }]
             }
-        } */
+        }
     });
+}
+
+function contadorDeClick(nodo) {
+    listaCkic = lSTraer("listaClick");
+    var listaCkicNueva;
+    var nuevo;
+    var estaEnLaLista = false;
+    if (listaCkic != null) {
+        estaEnLaLista = listaCkic.map(function (elemento) {
+            if (elemento.id == nodo.id) {
+                return true;
+            }
+        });
+        if (estaEnLaLista) {
+            listaCkicNueva = listaCkic.map(function (elemento) {
+                if (elemento.id == nodo.id) {
+                    elemento.click++;
+                }
+                return elemento;
+            });
+        }
+    }
+    if (estaEnLaLista == false) {
+        nuevo = new contadorClick(nodo.id, 1);
+        if (listaCkic == null) {
+            listaCkicNueva.push(nuevo);
+        }
+        else {
+            listaCkic.push(nuevo);
+            listaCkicNueva = listaCkic;
+        }
+    }
+
+    lSGuardar(listaCkicNueva, "listaClick");
 }
