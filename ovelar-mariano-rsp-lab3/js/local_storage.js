@@ -60,18 +60,23 @@ function lSBorrarElemento(datoABorrar, key) {
     }
 }
 
-/* function lSMostrarColumnasActivas(key) {
-    let columnas = lSTraer(key);
+function lSModificarElemento(datoModificado, key) {
+
+    let lista = lSTraer(key);
+    let listaModificada;
     if (lista != null) {
-        colunasAMostrar(columnas);
+        listaModificada = lista.map(function (elemento) {
+            if (elemento.id == datoModificado.id) {
+                elemento = datoModificado;
+            }
+            return elemento;
+        });
+        lSGuardar(listaModificada, key);
     }
-} */
+    else {
+        console.log("no hay elementos en la lista!!!!")
+    }
+}
 
-
-
-/*
-export { lSGuardarNuevoElemento, lSInicializarTabla, lSTraer, lSGuardar }
-
-*/
 
 

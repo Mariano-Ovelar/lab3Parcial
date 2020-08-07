@@ -12,11 +12,11 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./css/pagina.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
 </head>
 
 <body>
-
     <header class="">
         <div class="row justify-content-between">
             <div class="col-md-2 col-lg-1 align-self-center">
@@ -25,7 +25,6 @@
                 </div>
 
             </div>
-
             <div class="col-sm col-md-6 col-lg-4 align-self-center">
                 <nav class="text-center">
                     <a href="">Nosotros</a>
@@ -37,14 +36,11 @@
         </div>
     </header>
     <!-- -------------------------------------------------------------------------------------- -->
-
     <div id="inicio">
         <h1 class="centrarTexto">Administracion</h1>
         <img src="img/cachorro.png" alt="animales">
     </div>
-
     <!-- -------------------------------------------------------------------------------------- -->
-
     <form class="container">
         <fieldset>
             <legend>Informacion Del Anuncio</legend>
@@ -114,7 +110,7 @@
                         <div class="col-5 form-group">
                             <label class="col">FILTRAR MASCOTA:</label>
                             <select name="filtrar" id="sltFiltrar" class="col form-control ">
-                                <option value="todo">TODOS LOS ANIMALES</option>
+                                <option value="todo">MOSTRAR TODO</option>
                                 <option value="perro">PERRO</option>
                                 <option value="gato">GATO</option>
                             </select>
@@ -128,7 +124,27 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- -------------------------------------------------------------------------------------- -->
+                <div class="row">
+                    <div class="col-4 form-group">
+                        <label>PRECIO MAXIMO:</label>
+                        <input class="form-control" type="text" name="PrecioMaximo" id="txtPrecioMaximo"
+                            placeholder="Max">
+                    </div>
+                    <!-- -------------------------------------------------------------------------------------- -->
+                    <div class="col-4 form-group">
+                        <label>PRECIO MINIMO:</label>
+                        <input class="form-control" type="text" name="PrecioMinimo" id="txtPrecioMinimo"
+                            placeholder="Min">
+                    </div>
+                    <!-- -------------------------------------------------------------------------------------- -->
+                    <div class="col-4 form-group">
+                        <label>%VACUNADOS:</label>
+                        <input class="form-control" type="text" name="porsentajeVacunado" id="txtPorsentajeVacunado"
+                            placeholder="%">
+                    </div>
+                </div>
+                <!-- -------------------------------------------------------------------------------------- -->
                 <div id="listaCheck" class="row justify-content-start">
                     <label class="col-lg-1">TITULO
                         <div class="">
@@ -192,12 +208,12 @@
         </fieldset>
     </form>
     <!-- -------------------------------------------------------------------------------------- -->
-
     <div class="container ">
         <div id="tabla" class="panel-body table-responsive"></div>
     </div>
     <!-- -------------------------------------------------------------------------------------- -->
-
+    <canvas id="myChart" class="conteiner" height="50"></canvas>
+    <!-- -------------------------------------------------------------------------------------- -->
     <footer>
         <div class="row justify-content-between">
             <div class="col-md-6 col-lg-4 align-self-center">
@@ -215,9 +231,7 @@
             </div>
         </div>
     </footer>
-
     <!-- -------------------------------------------------------------------------------------- -->
-
     <script src="./js/dist/achivosTs.js"></script>
     <script src="./js/local_storage.js"></script>
     <script src="./js/tableheper.js"></script>

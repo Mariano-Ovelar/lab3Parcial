@@ -48,6 +48,10 @@ function refrecarTabla(datos) {
     tabla.appendChild(Spinner());
     armarTabla(datos);
     activarBoton(btnGuardar);
+    sacarPromedio(datos);
+    sacarMaximo(datos);
+    sacarMinimo(datos);
+    sacarPorsentajeVacunacion(datos);
 }
 
 /* function Listar() {
@@ -73,7 +77,7 @@ function agregarEventosTabla() {
             console.log(nodes);
             let anuncio = new Anuncio_Mascota(nodes[0].textContent, nodes[1].textContent, nodes[2].textContent
                 , nodes[3].textContent, nodes[4].textContent, nodes[5].textContent, nodes[6].textContent
-                , nodes[7].textContent);
+                , nodes[7].textContent, nodes[8].textContent);
             CargarFormulario(anuncio);
         });
     }
@@ -88,15 +92,16 @@ function Spinner() {
 
 function colunasAOcultar(arrayColunas) {
 
-    for (var elemento of arrayColunas) {
-        var col = "td:nth-child(" + elemento + "),th:nth-child(" + elemento + ")";
+    arrayColunas.map(function (ubicacion) {
+        var col = "td:nth-child(" + ubicacion + "),th:nth-child(" + ubicacion + ")";
         $(col).hide();
-    }
+    });
+
 }
 function colunasAMostrar(arrayColunas) {
-
-    for (var elemento of arrayColunas) {
-        var col = "td:nth-child(" + elemento + "),th:nth-child(" + elemento + ")";
+    arrayColunas.map(function (ubicacion) {
+        var col = "td:nth-child(" + ubicacion + "),th:nth-child(" + ubicacion + ")";
         $(col).show();
-    }
+    });
+
 }

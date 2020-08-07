@@ -3,7 +3,6 @@
 
 
 let form;
-
 let tabla;
 let txtTitulo;
 let txtDescripcion;
@@ -16,17 +15,14 @@ let txtRaza;
 let dtFecha;
 let sltVacuna;
 let idOculto;
-
 let today;
 let inputRequired;
 let listaAnuncio;
-
 let btnGuardar;
 let btnBorrar;
 let btnModificar;
 let btnCancelar;
 let grupoDeBotonesForm;
-
 let checkTransaccion;
 let checkTitulo;
 let checkDescripcion;
@@ -38,8 +34,21 @@ let checkVuna;
 let listaCheck;
 let txtPromedio;
 let sltFiltrar;
+let txtPorsentajeVacunado;
+let txtPrecioMinimo;
+let txtPrecioMaximo;
 
 window.addEventListener("load", function () {
+    inicializarVariables();
+    inicializarEventos();
+    botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
+    refrecarTabla(lSTraer('listaAnuncios'));
+    instanciarCheck();
+    //colunasAMostrar(lSTraer("checkActivos"));
+
+});
+
+function inicializarVariables() {
     form = document.forms[0];
     btnGuardar = document.getElementById("btnGuardar");
     btnCancelar = document.getElementById("btnCancelar");
@@ -62,7 +71,6 @@ window.addEventListener("load", function () {
     today = new Date().toISOString().split('T')[0];
     dtFecha.setAttribute('max', today);
     dtFecha.value = today;
-
     checkTitulo = document.getElementById("checkTitulo");
     checkTransaccion = document.getElementById("checkTransaccion");
     checkDescripcion = document.getElementById("checkDescripcion");
@@ -74,14 +82,16 @@ window.addEventListener("load", function () {
     listaCheck = [checkTitulo, checkTransaccion, checkDescripcion, checkAnimal, checkPrecio, checkRaza, checkFecha, checkVuna];
     txtPromedio = document.getElementById("txtPromedio");
     sltFiltrar = document.getElementById("sltFiltrar");
-    inicializarEventos();
-    botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
-    refrecarTabla(lSTraer('listaAnuncios'));
-    sacarPromedio(lSTraer("listaAnuncios"));
-    instanciarCheck();
-    //colunasAMostrar(lSTraer("checkActivos"));
+    txtPorsentajeVacunado = document.getElementById("txtPorsentajeVacunado");
+    txtPrecioMinimo = document.getElementById("txtPrecioMinimo");
+    txtPrecioMaximo = document.getElementById("txtPrecioMaximo");
+    desactivarTxt(txtPromedio);
+    desactivarTxt(txtPorsentajeVacunado);
+    desactivarTxt(txtPrecioMinimo);
+    desactivarTxt(txtPrecioMaximo);
 
-});
+}
+
 
 function crearElemento(form) {
     var id;
@@ -156,7 +166,7 @@ function baja(obj) {
 function modificar(obj) {
     if (alerta("Quiere guardar cambios de el anuncio?")) {
         botonesVisivilidad(grupoDeBotonesForm, [btnGuardar]);
-
+        lSModificarElemento(obj, 'listaAnuncios');
         borrarForm();
 
     }
@@ -192,7 +202,6 @@ function borrarForm() {
     sltVacuna.value = "Si";
     idOculto.value = "";
     sltFiltrar.value = "todo";
-    sacarPromedio(lSTraer("listaAnuncios"));
     refrecarTabla(lSTraer('listaAnuncios'));
     traerChekFrom();
 }
@@ -238,7 +247,6 @@ function inicializarEventos() {
     });
     idOculto = document.getElementById("idOculto");
     idOculto.classList.add("d-none");
-    desactivarTxt(txtPromedio);
 
     sltFiltrar.addEventListener("click", function (e) {
         filtrarAnimal(sltFiltrar.value);
@@ -266,9 +274,6 @@ function botonesVisivilidad(aOcultar, aMostrar) {
 
     }
 }
-
-
-
 function traerChekFrom() {
 
     let respuesta = Array();
@@ -286,11 +291,12 @@ function traerChekFrom() {
 }
 
 function checkEvento() {
-    for (var elemento of listaCheck) {
+    listaCheck.map(function (elemento) {
         elemento.addEventListener("click", function () {
             lSGuardar(traerChekFrom(), "checkActivos");
         });
-    }
+    });
+
 
 }
 
@@ -298,36 +304,32 @@ function checkEvento() {
 function instanciarCheck() {
     var arrayLS = lSTraer("checkActivos");
     checkEvento();
-    for (var elemento of listaCheck) {
+    listaCheck.map(function (elemento) {
         for (var valor of arrayLS) {
             if (valor == elemento.value) {
                 elemento.checked = false;
                 break;
             }
         }
-    }
+    });
+
     colunasAOcultar(arrayLS);
 }
 
 function sacarPromedio(listaAnuncio) {
-    var pro;
+    var pro = 0;
     let suma = 0;
     var i = listaAnuncio.length;
-    if (i > 1) {
-        suma = listaAnuncio.reduce(function (anterior, actual) {
-            console.log(anterior);
-            anterior = 0;
-            return anterior + actual.precio;
-        })
-        console.log(suma);
+
+    for (var elemento of listaAnuncio) {
+        suma = suma + elemento.precio;
+    }
+    if (suma != 0) {
         pro = suma / i;
         txtPromedio.value = pro;
     }
-    else if (i == 1) {
-        txtPromedio.value = listaAnuncio[0].precio;
-    }
     else {
-        txtPromedio.value = 0;
+        txtPromedio.value = pro;
     }
 }
 function filtrarAnimal(tipoMascota) {
@@ -340,7 +342,95 @@ function filtrarAnimal(tipoMascota) {
     } else {
         listaFiltrada = listaAnuncio;
     }
-    sacarPromedio(listaFiltrada);
     refrecarTabla(listaFiltrada);
     traerChekFrom();
+}
+
+function sacarMaximo(listaAnuncio) {
+    var max = 0;
+
+
+    if (listaAnuncio.length > 1) {
+        max = listaAnuncio.reduce(function (ant, act) {
+            var retorno = act.precio;
+            if (ant > act.precio) {
+                retorno = ant;
+            }
+            return retorno;
+        }, 0);
+    }
+    else if (listaAnuncio.length == 1) {
+        max = listaAnuncio[0].precio;
+    }
+    txtPrecioMaximo.value = max;
+
+}
+function sacarMinimo(listaAnuncio) {
+    var min = 0;
+
+    if (listaAnuncio.length > 1) {
+        min = listaAnuncio.reduce(function (ant, act) {
+            var retorno = act.precio;
+            /* console.log(ant.precio);
+            console.log(act.precio); */
+            if (ant < act.precio) {
+                retorno = ant;
+            }
+            return retorno;
+        }, listaAnuncio[0].precio);
+    }
+    else if (listaAnuncio.length == 1) {
+        min = listaAnuncio[0].precio;
+    }
+    txtPrecioMinimo.value = min;
+}
+function sacarPorsentajeVacunacion(listaAnuncio) {
+    var vacunados = 0;
+    var porsentaVacunados = 0;
+
+    if (listaAnuncio.length > 1) {
+        vacunados = listaAnuncio.reduce(function (ant, act) {
+            console.log(ant);
+            if (act.vacuna == "Si") {
+                ant++;
+            }
+            return ant;
+
+        }, 0);
+    } else if (listaAnuncio.length == 1 && listaAnuncio[0].vacuna == "Si") {
+        vacunados = 1;
+    }
+    if (listaAnuncio.length) {
+        porsentaVacunados = (vacunados * 100) / listaAnuncio.length;
+    }
+    generarGrafico(porsentaVacunados);
+    txtPorsentajeVacunado.value = porsentaVacunados + "%";
+
+}
+
+function generarGrafico(dato) {
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: ['Vacunados', 'no Vacunados'],
+            datasets: [{
+                //label:'Num datos',
+                data: [dato, 100 - dato],
+                backgroundColor: [
+                    'rgb(255, 0, 0,0.5)',
+                    'rgb(0, 0, 255,0.5)',
+                ]
+            }]
+        },
+        /* options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        } */
+    });
 }
